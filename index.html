@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass Clock</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated colourful background so the glass has something to refract -->
+  <div class="bg" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <span class="blob b4"></span>
+  </div>
+
+  <main class="stage">
+    <section class="card glass" id="card">
+
+      <!-- Tabs -->
+      <nav class="tabs" id="tabs">
+        <span class="tab-indicator" id="indicator"></span>
+        <button class="tab active" data-tab="clock">Clock</button>
+        <button class="tab" data-tab="timer">Timer</button>
+        <button class="tab" data-tab="stopwatch">Stopwatch</button>
+      </nav>
+
+      <!-- CLOCK -->
+      <div class="panel active" id="clock">
+        <div class="digits big" id="clockTime">00:00:00</div>
+        <div class="ampm" id="clockAmPm">AM</div>
+        <div class="date" id="clockDate">—</div>
+      </div>
+
+      <!-- TIMER -->
+      <div class="panel" id="timer">
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#8be9ff" />
+                <stop offset="100%" stop-color="#c79bff" />
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="100" cy="100" r="88" />
+            <circle class="ring-bar" id="ringBar" cx="100" cy="100" r="88" />
+          </svg>
+          <div class="ring-center">
+            <div class="timer-inputs" id="timerInputs">
+              <input type="number" id="tH" min="0" max="99" value="0" aria-label="Hours" />
+              <span>:</span>
+              <input type="number" id="tM" min="0" max="59" value="5" aria-label="Minutes" />
+              <span>:</span>
+              <input type="number" id="tS" min="0" max="59" value="0" aria-label="Seconds" />
+            </div>
+            <div class="digits medium hidden" id="timerDisplay">00:05:00</div>
+            <div class="label" id="timerLabel">Set time</div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn" id="timerReset">Reset</button>
+          <button class="btn primary" id="timerStart">Start</button>
+        </div>
+      </div>
+
+      <!-- STOPWATCH -->
+      <div class="panel" id="stopwatch">
+        <div class="digits big" id="swDisplay">00:00.00</div>
+        <div class="controls">
+          <button class="btn" id="swLap" disabled>Lap</button>
+          <button class="btn primary" id="swStart">Start</button>
+          <button class="btn" id="swReset">Reset</button>
+        </div>
+        <ul class="laps" id="laps"></ul>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
